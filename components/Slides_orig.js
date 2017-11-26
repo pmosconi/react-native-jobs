@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
 import { Button } from 'react-native-elements';
-import Swiper from 'react-native-swiper';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -33,14 +32,13 @@ class Slides extends Component {
 
     render() {
         return (
-            <Swiper
-                style={styles.wrapper}
-                showsButtons={false}
-                dotColor='white'
-                activeDotColor='yellow'
+            <ScrollView
+                horizontal
+                pagingEnabled
+                style={styles.scrollview}
             >
                 {this.renderSlides()}
-            </Swiper>
+            </ScrollView>
         );
     }
 }
@@ -48,7 +46,8 @@ class Slides extends Component {
 export default Slides;
 
 const styles = StyleSheet.create({
-    wrapper: {
+    scrollview: {
+      flex: 1,
     },
     slidetext: {
         fontSize: 30,
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        //width: SCREEN_WIDTH
+        width: SCREEN_WIDTH
     },
     button: {
         backgroundColor: '#0288D1'

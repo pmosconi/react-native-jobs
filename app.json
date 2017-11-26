@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "My New Project",
+    "name": "Udemy PM Jobs",
     "description": "Udemy PM Jobs",
     "slug": "udemy-pm-jobs",
     "privacy": "public",
@@ -18,7 +18,11 @@
       "assetExts": ["ttf", "mp4"]
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier":"com.actvalue.udemyjobs"
+    },
+    "android": {
+      "package": "com.actvalue.udemyjobs"
     }
   }
 }
