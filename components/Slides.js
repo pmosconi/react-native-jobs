@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { Button } from 'react-native-elements';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class Slides extends Component {
-    renderSlides = () => this.props.data.map((slide) => {
+    renderLastSlide = index => {
+        if (index === this.props.data.length -1)
+            return (
+                <Button 
+                    title="Onwards!"
+                    raised
+                    buttonStyle={styles.button}
+                    containerViewStyle={styles.buttonContainer}
+                    onPress={this.props.onComplete}
+                />
+            );
+    };
+
+    renderSlides = () => this.props.data.map((slide, index) => {
         return (
             <View 
                 key={slide.text}
                 style={[styles.slide, {backgroundColor: slide.color}]}
             >
                 <Text style={styles.slidetext} >{slide.text}</Text>
+                {this.renderLastSlide(index)}
             </View>
         );
     });
@@ -44,5 +59,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: SCREEN_WIDTH
+    },
+    button: {
+        backgroundColor: '#0288D1'
+    },
+    buttonContainer: {
+        marginTop: 15
     }
   });
