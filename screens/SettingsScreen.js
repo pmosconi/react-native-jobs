@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, AsyncStorage } from 'react-native';
+import { Button } from 'react-native-elements';
+import { connect } from 'react-redux';
+
+import * as actions from '../actions';
 
 class SettingsScreen extends Component {
     static navigationOptions = () => ({
@@ -13,9 +17,18 @@ class SettingsScreen extends Component {
                 <Text>SettingsScreen</Text>
                 <Text>SettingsScreen</Text>
                 <Text>SettingsScreen</Text>
+                <Button 
+                    title="Logout" 
+                    backgroundColor = "#fff"
+                    color = "steelblue"
+                    onPress={() => {
+                        this.props.logout();
+                        this.props.navigation.navigate('welcome');
+                    } } 
+                />
             </View>
         );
     }
 }
 
-export default SettingsScreen;
+export default connect(null, actions)(SettingsScreen);
