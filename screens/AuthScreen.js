@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 
@@ -7,14 +7,11 @@ import * as actions from '../actions';
 
 class AuthScreen extends Component {
     static navigationOptions = { tabBarLabel: 'login'};
-    state = { cancLogin: false };
 
     onAuthComplete = props => {
         if(props.token) {
             this.props.navigation.navigate('map');
-        } else {
-            this.setState({ cancLogin: true });
-        }
+        } 
     }
 
     onPressLogin = () => {
@@ -32,18 +29,18 @@ class AuthScreen extends Component {
     }
 
     render() {
-        if (this.state.cancLogin) {
-            return (
-                <Button 
-                    title="Login" 
-                    backgroundColor = "#fff"
-                    color = "steelblue"
-                    onPress={this.onPressLogin} 
-                />
-            );
-        } else {
-            return null;
-        }
+        return (
+            <View style={styles.view} >
+            <Text>Please Login to continue...</Text>
+            <Button 
+                title="Login" 
+                raised
+                buttonStyle={styles.button}
+                containerViewStyle={styles.buttonContainer}
+                onPress={this.onPressLogin} 
+            />
+        </View>
+        );
     }
 }
 
@@ -52,3 +49,17 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps, actions)(AuthScreen);
+
+const styles = StyleSheet.create({
+    view: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    button: {
+        backgroundColor: '#0288D1'
+    },
+    buttonContainer: {
+        marginTop: 15
+    }
+  });
