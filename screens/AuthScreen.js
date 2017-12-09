@@ -15,7 +15,6 @@ class AuthScreen extends Component {
     }
 
     onPressLogin = () => {
-        this.setState({ cancLogin: false });
         this.props.facebook_login();
     }
 
