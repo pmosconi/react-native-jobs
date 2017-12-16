@@ -30,6 +30,7 @@ export default class App extends React.Component {
           }
         }, {
           tabBarPosition: 'bottom',
+          swipeEnabled: false
           //lazy: true
         })
       }

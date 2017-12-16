@@ -8,7 +8,7 @@ const jobsInitialState = { results: [] };
 const jobsReducer = (state = jobsInitialState, action) => {
     switch (action.type) {
         case FETCH_JOBS_SUCCESS:
-            return { results: action.payload };
+            return { results: action.payload.jobs };
 
         case FETCH_JOBS_FAILURE:
             return jobsInitialState;

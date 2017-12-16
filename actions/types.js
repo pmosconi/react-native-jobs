@@ -6,3 +6,4 @@ export const LOGOUT_SUCCESS = 'logout_success';
 export const FETCH_JOBS_PENDING = 'fetch_jobs_pending';
 export const FETCH_JOBS_SUCCESS = 'fetch_jobs_success';
 export const FETCH_JOBS_FAILURE = 'fetch_jobs_failure';
+export const LIKE_JOB = 'like_job';
