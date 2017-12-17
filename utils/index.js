@@ -1,0 +1,1 @@
+export const cutText = (text, len) => text.length > len ? text.substr(0, len-3)+'...' : text;

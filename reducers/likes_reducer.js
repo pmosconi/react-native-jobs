@@ -1,5 +1,6 @@
 import { 
-    LIKE_JOB
+    LIKE_JOB,
+    CLEAR_LIKED_JOBS
  } from '../actions/types';
 
 const likesInitialState = [];
@@ -8,6 +9,9 @@ const likesReducer = (state = likesInitialState, action) => {
     switch (action.type) {
         case LIKE_JOB:
             return addUniq(state, action.payload, 'jobkey');
+
+        case CLEAR_LIKED_JOBS:
+            return likesInitialState;
 
         default:
             return state;

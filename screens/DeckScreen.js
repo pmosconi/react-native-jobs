@@ -5,6 +5,7 @@ import { Button, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import Swipe from '../components/Swipe';
+import { cutText } from '../utils';
 import * as actions from '../actions';
 
 class DeckScreen extends Component {
@@ -15,8 +16,6 @@ class DeckScreen extends Component {
             latitudeDelta: 0.045,
             longitudeDelta: 0.02
         };
-
-        cutText = (text, len) => text.length > len ? text.substr(0, len-3)+'...' : text
 
         return(
             <Card
@@ -29,9 +28,7 @@ class DeckScreen extends Component {
                         style={styles.map}
                         cacheEnabled={Platform.OS === 'android'}
                         initialRegion={initialRegion}
-                    >
-
-                    </MapView>
+                    />
                 </View>
                 <View style={styles.detailWrapper} >
                     <Text>{cutText(job.company, 30)}</Text>
@@ -53,14 +50,14 @@ class DeckScreen extends Component {
         return(
           <Card title='All Done!' >
             <Text style={{ marginBottom: 10 }} >
-              No more content to show!
+              No more jobs to show!
             </Text>
-            <Button 
+{/*             <Button 
               onPress={this.onRestoreCards}
               icon={{ name: 'code' }}
               backgroundColor='#03A9F4'
               title='Get More!'
-            />
+            /> */}
           </Card>
         );
     }

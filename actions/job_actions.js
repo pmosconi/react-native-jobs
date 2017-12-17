@@ -6,7 +6,8 @@ import {
     FETCH_JOBS_PENDING,
     FETCH_JOBS_SUCCESS,
     FETCH_JOBS_FAILURE,
-    LIKE_JOB
+    LIKE_JOB,
+    CLEAR_LIKED_JOBS
 } from './types';
 
 export const fetchJobsPending =  () => {
@@ -47,6 +48,11 @@ export const likeJob = job => {
         type: LIKE_JOB,
         payload: job
      };
+};
+
+// clear liked jobs for settings screen
+export const clearLikedJobs = () => {
+    return { type: CLEAR_LIKED_JOBS };
 };
 
 // PRIVATE FUNCTIONS

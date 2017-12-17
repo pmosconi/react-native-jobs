@@ -14,12 +14,20 @@ class SettingsScreen extends Component {
     render() {
         return (
             <View style={styles.view} >
-                <Text>SettingsScreen</Text>
                 <Button 
-                    title="Logout" 
-                    raised
-                    buttonStyle={styles.button}
-                    containerViewStyle={styles.buttonContainer}
+                    title="Reset Liked Jobs"
+                    backgroundColor='#0288D1'
+                    large
+                    icon={{ name: 'delete-forever' }}
+                    containerViewStyle={[styles.buttonContainer, {top: 20}]}
+                    onPress={this.props.clearLikedJobs} 
+                />
+                <Button 
+                    title="Logout"
+                    backgroundColor='#0288D1'
+                    large
+                    icon={{ name: 'logout', type: 'material-community' }}
+                    containerViewStyle={[styles.buttonContainer, {top: 120}]}
                     onPress={() => {
                         this.props.logout();
                         this.props.navigation.navigate('welcome');
@@ -35,14 +43,13 @@ export default connect(null, actions)(SettingsScreen);
 const styles = StyleSheet.create({
     view: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
     },
-    button: {
-        backgroundColor: '#0288D1'
-    },
     buttonContainer: {
-        marginTop: 15
+        position: 'absolute',
+        left: 10,
+        right: 10
     }
   });
 
