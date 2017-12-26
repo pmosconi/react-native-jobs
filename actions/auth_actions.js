@@ -55,7 +55,7 @@ export const logout_success = () => {
 export const logout = () => async dispatch => {
     await AsyncStorage.removeItem('fb_token');
     dispatch(logout_success());
-}
+};
 
 // PRIVATE METHODS
 const doFacebookLogin = async dispatch => {

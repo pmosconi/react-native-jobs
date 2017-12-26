@@ -1,3 +1,5 @@
+import { REHYDRATE } from 'redux-persist/constants';
+
 import { 
     LIKE_JOB,
     CLEAR_LIKED_JOBS
@@ -7,6 +9,9 @@ const likesInitialState = [];
 
 const likesReducer = (state = likesInitialState, action) => {
     switch (action.type) {
+        case REHYDRATE:
+            return action.payload.likedJobs || likesInitialState;
+
         case LIKE_JOB:
             return addUniq(state, action.payload, 'jobkey');
 

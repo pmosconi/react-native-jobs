@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Platform, StyleSheet } from 'react-native';
 import { MapView } from 'expo';
-import { Button, Card } from 'react-native-elements';
+import { Button, Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import Swipe from '../components/Swipe';
@@ -9,6 +9,11 @@ import { cutText } from '../utils';
 import * as actions from '../actions';
 
 class DeckScreen extends Component {
+    static navigationOptions =  {
+        title: 'Jobs',
+        tabBarIcon: ({ tintColor }) => { return <Icon name="description" size={30} color={tintColor} />; },
+    };
+
     renderCard = job => {
         const initialRegion = {
             longitude: job.longitude,
@@ -37,27 +42,19 @@ class DeckScreen extends Component {
                 <View style={styles.snipStyle} >
                     <Text>{cutText(job.snippet.replace(/<\/*b>/g, ''), 135)}</Text>
                 </View>
-{/*                 <Button 
-                    icon={{ name: 'code' }}
-                    backgroundColor='#03A9F4'
-                    title='View Now!'
-                /> */}
             </Card>
         );
     }
 
     renderNoMoreCards = () => {
         return(
-          <Card title='All Done!' >
-            <Text style={{ marginBottom: 10 }} >
-              No more jobs to show!
-            </Text>
-{/*             <Button 
-              onPress={this.onRestoreCards}
-              icon={{ name: 'code' }}
-              backgroundColor='#03A9F4'
-              title='Get More!'
-            /> */}
+          <Card title='No More Jobs' >
+            <Button 
+                title="Back to Map"
+                icon={{ name: 'my-location' }}
+                backgroundColor='#0288D1'
+                onPress={() => this.props.navigation.navigate('map')}
+            />
           </Card>
         );
     }
@@ -93,7 +90,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     mapWrapper: {
-        height: 300
+        height: 270
     },
     snipStyle: {
         height: 52

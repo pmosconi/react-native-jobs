@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class SettingsScreen extends Component {
-    static navigationOptions = () => ({
+    static navigationOptions = {
         title: 'Settings'
-    });
+    };
 
     state = {  }
     render() {
@@ -29,6 +29,7 @@ class SettingsScreen extends Component {
                     icon={{ name: 'logout', type: 'material-community' }}
                     containerViewStyle={[styles.buttonContainer, {top: 120}]}
                     onPress={() => {
+                        this.props.clearLikedJobs();
                         this.props.logout();
                         this.props.navigation.navigate('welcome');
                     } } 

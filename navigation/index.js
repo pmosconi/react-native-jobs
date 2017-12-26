@@ -22,8 +22,13 @@ const MainNavigator = TabNavigator({
         }
       }, {
         tabBarPosition: 'bottom',
-        swipeEnabled: false
+        swipeEnabled: false,
         //lazy: true
+        tabBarOptions: {
+          showIcon: true,
+          iconStyle: { width: 30, height: 30 },
+          labelStyle: { fontSize: 12 }
+        }
       })
     }
   }, {
@@ -33,6 +38,7 @@ const MainNavigator = TabNavigator({
     lazy: true,
     animationEnabled: false,
     initialRouteName: 'welcome',
+    backBehavior: 'none',
     tabBarOptions: {
       labelStyle: {
         fontSize: 12,
