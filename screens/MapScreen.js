@@ -4,6 +4,7 @@ import { MapView } from 'expo';
 import { connect } from 'react-redux';
 import { Button, Icon } from 'react-native-elements';
 
+import Loading from '../components/Loading';
 import * as actions from '../actions';
 
 class MapScreen extends Component {
@@ -37,13 +38,8 @@ class MapScreen extends Component {
     }
 
     render() {
-        if (!this.state.mapLoaded) {
-            return(
-                <View style={styles.loadView} >
-                    <ActivityIndicator size="large" />
-                </View>
-            );
-        }
+        if (!this.state.mapLoaded || this.props.loading)
+            return <Loading/>;
 
         return (
             <View style={styles.mapView} >
@@ -65,7 +61,11 @@ class MapScreen extends Component {
     }
 }
 
-export default connect(null, actions)(MapScreen);
+const mapStateToProps = ({ jobs }) => {
+    return { loading: jobs.loading };
+};
+
+export default connect(mapStateToProps, actions)(MapScreen);
 
 const styles = StyleSheet.create({
     mapView: {
@@ -73,10 +73,6 @@ const styles = StyleSheet.create({
     },
     map: {
         flex: 1
-    },
-    loadView: {
-        flex: 1,
-        justifyContent: 'center'
     },
     button: {
         backgroundColor: '#0288D1'

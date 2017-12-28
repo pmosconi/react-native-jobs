@@ -15,7 +15,7 @@ const config = {
 
 const reducer = persistReducer(config, reducers);
 
-export default function configureStore(initialState = {}) {
+export default (initialState = {}) => {
     const store = createStore(
         reducer,
         initialState,
@@ -23,4 +23,4 @@ export default function configureStore(initialState = {}) {
     );
     const persistor = persistStore(store);
     return { persistor, store };
-}
+};
