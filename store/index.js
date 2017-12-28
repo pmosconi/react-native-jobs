@@ -1,23 +1,26 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import {persistStore, autoRehydrate} from 'redux-persist';
-import { AsyncStorage } from 'react-native';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/es/storage'; // default: localStorage if web, AsyncStorage if react-native
 //import logger from 'redux-logger';
 
 import reducers from '../reducers';
 
-const store = createStore(
-    reducers,
-    {},
-    compose(
+const config = {
+    key: 'root',
+    storage,
+    whitelist: ['likedJobs'],
+    //debug: true
+};
+
+const reducer = persistReducer(config, reducers);
+
+export default function configureStore(initialState = {}) {
+    const store = createStore(
+        reducer,
+        initialState,
         applyMiddleware(thunk /*, logger*/),
-        autoRehydrate()
-    )
-);
-
-persistStore(store, {
-    storage: AsyncStorage,
-    whitelist: ['likedJobs']
-});
-
-export default store;
+    );
+    const persistor = persistStore(store);
+    return { persistor, store };
+}

@@ -1,4 +1,4 @@
-import { REHYDRATE } from 'redux-persist/constants';
+import { PERSIST_REHYDRATE } from 'redux-persist/lib/constants';
 
 import { 
     LIKE_JOB,
@@ -9,7 +9,7 @@ const likesInitialState = [];
 
 const likesReducer = (state = likesInitialState, action) => {
     switch (action.type) {
-        case REHYDRATE:
+        case PERSIST_REHYDRATE:
             return action.payload.likedJobs || likesInitialState;
 
         case LIKE_JOB:
